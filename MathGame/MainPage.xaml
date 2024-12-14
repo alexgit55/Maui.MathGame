@@ -28,19 +28,25 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Column="0" 
-                        Text="Addition"/>
+                        Text="Addition"
+                        Clicked="OnGameChosen"/>
                 <Button Grid.Column="1"
-                        Text="Subtraction"/>
+                        Text="Subtraction"
+                        Clicked="OnGameChosen"/>
                 <Button Grid.Column="2"
-                        Text="Multiplication"/>
+                        Text="Multiplication"
+                        Clicked="OnGameChosen"/>
                 <Button Grid.Column="3"
-                        Text="Division"/>
+                        Text="Division"
+                        Clicked="OnGameChosen"/>
                 <Button Grid.Column="4"
-                        Text="Random"/>
+                        Text="Random"
+                        Clicked="OnGameChosen"/>
                 <Button Grid.Row="1" 
                         Grid.ColumnSpan="5" 
                         Text="View Previous Games"
-                        BackgroundColor="Green"/>
+                        BackgroundColor="Green"
+                        Clicked="OnViewPreviousGamesChosen"/>
             </Grid>
         </VerticalStackLayout>
     </ContentView>
