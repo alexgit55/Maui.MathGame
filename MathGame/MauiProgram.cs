@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using MathGame.Data;
+using Microsoft.Extensions.Logging;
 
 namespace MathGame
 {
@@ -18,6 +19,11 @@ namespace MathGame
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
+
+            string dbPath = Path.Combine(FileSystem.AppDataDirectory, "mathgame.db");
+
+            builder.Services.AddSingleton(s =>
+                ActivatorUtilities.CreateInstance<GameRepository>(s, dbPath));
 
             return builder.Build();
         }

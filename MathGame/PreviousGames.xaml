@@ -3,10 +3,49 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MathGame.PreviousGames"
              >
-    <VerticalStackLayout>
-        <Label 
-            Text="Previous GAmes"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="100,100,200,50">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="Date" FontSize="20"/>
+                <Label Grid.Column="1" Text="Type" FontSize="20"/>
+                <Label Grid.Column="2" Text="Score" FontSize="20"/>
+                <Label Grid.Column="3" Text="Delete Game" FontSize="20"/>
+            </Grid>
+            <CollectionView
+                x:Name="gamesList">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="50"
+                                 />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="2*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Label Grid.Column="0" Text="{Binding DatePlayed, StringFormat='{0:d}'}" FontSize="20"/>
+                            <Label  Grid.Column="1" Text="{Binding Type}" FontSize="20"/>
+                            <Label  Grid.Column="2" Text="{Binding Score}" FontSize="20"/>
+                            <Button Grid.Column="3" Text="Delete" BindingContext="{Binding Id}" Clicked="OnDeleteGame"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
+            <Button Text="Return to Main Menu" Clicked="OnBackToMain" HorizontalOptions="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>

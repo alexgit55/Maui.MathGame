@@ -1,3 +1,5 @@
+using MathGame.Models;
+
 namespace MathGame;
 
 public partial class GamePage : ContentPage
@@ -84,9 +86,25 @@ public partial class GamePage : ContentPage
 
     private void GameOver()
     {
+        GameOperation gameType = GameType switch
+        {
+            "Addition" => GameOperation.Addition,
+            "Subtraction" => GameOperation.Subtraction,
+            "Multiplication" => GameOperation.Multiplication,
+            "Division" => GameOperation.Division,
+            _ => GameOperation.Random
+        };
+
         GameOverLabel.Text = $"Game Over! You scored {score} out of {totalQuestions}";
         QuestionArea.IsVisible = false;
         BackToMain.IsVisible = true;
+
+        App.GameRepository.AddGame(new Game
+        {
+            Type = gameType,
+            Score = score,
+            DatePlayed = DateTime.Now
+        });
     }
 
     private void ProcessAnswer(bool iscorrect)
@@ -99,6 +117,8 @@ public partial class GamePage : ContentPage
 
     private void OnBackToMain(object sender, EventArgs e)
     {
+        score = 0;
+        questionNumber = 1;
         Navigation.PushAsync(new MainPage());
     }
 }
